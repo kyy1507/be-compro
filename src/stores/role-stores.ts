@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import ApiHelper from "@/lib/apiHelper";
+import ApiHelper from "@/lib/api-helper";
 import { Role, RolePermission } from "@/types/role";
 import { Pagination } from "@/types/pagination";
 
@@ -14,7 +14,7 @@ interface RoleStoreState {
   setLoading: (val: boolean) => void;
   fetchData: (id: number) => Promise<void>;
   fetchDataTable: (formData: any) => Promise<void>;
-  submitForm: (formData: any, mode: "create" | "update", id?: number, cb?: (res: any) => void) => Promise<void>;
+  submitForm: (formData: any, mode: string, id?: number, cb?: (res: any) => void) => Promise<void>;
   remove: (id: number, cb?: (res: any) => void) => Promise<void>;
   clearFormData: () => void;
 }
