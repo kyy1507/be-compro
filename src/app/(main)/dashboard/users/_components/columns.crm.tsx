@@ -9,8 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { recentLeadSchema } from "./schema";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import DeletePopover from "@/components/forms/DeletePopover";
+import DeletePopover from "@/components/forms/delete-popover";
 
 export const userColumns = (
   openDialog: (mode: "create" | "update" | "view", id?: number) => void,
@@ -83,7 +82,7 @@ export const userColumns = (
             <Edit />
           </Button>
           <DeletePopover
-            apiRoute="/users"
+            apiRoute="user"
             id={row.original.id}
             onDeleted={handleReload}
           />

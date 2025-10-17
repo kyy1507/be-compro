@@ -1,6 +1,6 @@
 // store/userStore.ts
 import { create } from "zustand";
-import ApiHelper from "@/lib/apiHelper";
+import ApiHelper from "@/lib/api-helper";
 import { User } from "@/types/user";
 import { Pagination } from "@/types/pagination";
 

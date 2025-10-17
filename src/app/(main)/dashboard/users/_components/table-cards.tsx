@@ -8,9 +8,9 @@ import { useDataTableInstance } from "@/hooks/use-data-table-instance";
 
 import { userColumns } from "./columns.crm";
 import { useEffect, useState } from "react";
-import { useUserStore } from "@/stores/userStores";
-import UserFormDialog from "@/components/forms/UserFormDialog";
-import RoleDropdown from "@/components/dropdown/RoleDropdown";
+import { useUserStore } from "@/stores/user-stores";
+import FormDataDialog from "./form-data-dialog";
+import RoleDropdown from "@/components/dropdown/role-dropdown";
 
 export function TableCards() {
   const { tableData, fetchDataTable, loading } = useUserStore();
@@ -20,6 +20,8 @@ export function TableCards() {
   const [roleId, setRoleId] = useState<number>();
   const [searchQuery, setSearchQuery] = useState("");
   const [isMounted, setIsMounted] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   const openDialog = (mode: string, id?: number) => {
     setDialogMode(mode);
@@ -27,13 +29,18 @@ export function TableCards() {
     setDialogOpen(true);
   };
 
-  const handleFetchTable = (q = searchQuery, role = roleId) => {
+  const handleFetchTable = (params?: { page?: number; per_page?: number; q?: string; roleId?: number }) => {
+    const currentPage = params?.page ?? page;
+    const currentSize = params?.per_page ?? pageSize;
+    const currentQuery = params?.q ?? searchQuery;
+    const currentRole = params?.roleId ?? roleId;
+
     fetchDataTable({
-      page: 1,
+      page: currentPage,
       order: "asc",
-      per_page: 10,
-      q,
-      roleId: role,
+      per_page: currentSize,
+      q: currentQuery,
+      roleId: currentRole,
     });
   };
 
@@ -45,16 +52,15 @@ export function TableCards() {
   useEffect(() => {
     if (!isMounted) return;
     const timeout = setTimeout(() => {
-      handleFetchTable(searchQuery, roleId);
+      handleFetchTable({ q: searchQuery, roleId });
     }, 400);
     return () => clearTimeout(timeout);
   }, [searchQuery, roleId]);
 
-
   const table = useDataTableInstance({
-    data: tableData.data,
+    data: tableData?.data || [],
     columns: userColumns((mode, id) => openDialog(mode, id), handleFetchTable),
-    getRowId: (row) => row.id.toString(),
+    getRowId: (row) => row.id?.toString() ?? "",
   });
 
   return (
@@ -82,11 +88,6 @@ export function TableCards() {
                 value={roleId}
                 onChange={setRoleId}
               />
-              {/* <DataTableViewOptions table={table} /> */}
-              {/* <Button variant="outline" size="sm">
-                <Download />
-                <span className="hidden lg:inline">Export</span>
-              </Button> */}
             </div>
           </CardAction>
         </CardHeader>
@@ -94,14 +95,27 @@ export function TableCards() {
           <div className="overflow-hidden rounded-md border">
             <DataTable table={table} columns={userColumns} />
           </div>
-          <DataTablePagination table={table} />
+          <DataTablePagination
+            currentPage={tableData.current_page}
+            total={tableData.total}
+            pageSize={tableData.per_page}
+            onPageChange={(newPage) => {
+              setPage(newPage);
+              handleFetchTable({ page: newPage });
+            }}
+            onPageSizeChange={(newSize) => {
+              setPageSize(newSize);
+              handleFetchTable({ per_page: newSize, page: 1 });
+            }}
+          />
         </CardContent>
       </Card>
-      <UserFormDialog
+      <FormDataDialog
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         mode={dialogMode}
         userId={selectedId}
+        onSuccess={() => handleFetchTable()}
       />
     </div>
   );
