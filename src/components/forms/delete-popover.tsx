@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Trash } from "lucide-react";
+import ApiHelper from "@/lib/api-helper";
 
 interface DeletePopoverProps {
   apiRoute: string;
@@ -25,17 +26,14 @@ export default function DeletePopover({
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const handleDelete = async () => {
-    try {
-      setLoading(true);
-      await axios.delete(`/api${apiRoute}/${id}`);
+  const handleDelete = () => {
+    const apiHelper = new ApiHelper(apiRoute);
+
+    apiHelper.removeData(Number(id), (isLoading: boolean) => setLoading(isLoading), () => {
       toast.success("Data berhasil dihapus");
       onDeleted?.();
-    } catch (error) {
-      toast.error("Gagal menghapus data");
-    } finally {
-      setLoading(false);
-    }
+      setOpen(false);
+    });
   };
 
   return (

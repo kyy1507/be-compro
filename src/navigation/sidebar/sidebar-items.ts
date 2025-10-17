@@ -16,6 +16,7 @@ import {
   Gauge,
   GraduationCap,
   type LucideIcon,
+  UserRoundCog,
 } from "lucide-react";
 
 export interface NavSubItem {
@@ -63,30 +64,30 @@ export const sidebarItems: NavGroup[] = [
         url: "/dashboard/finance",
         icon: Banknote,
       },
-      {
-        title: "Analytics",
-        url: "/dashboard/coming-soon",
-        icon: Gauge,
-        comingSoon: true,
-      },
-      {
-        title: "E-commerce",
-        url: "/dashboard/coming-soon",
-        icon: ShoppingBag,
-        comingSoon: true,
-      },
-      {
-        title: "Academy",
-        url: "/dashboard/coming-soon",
-        icon: GraduationCap,
-        comingSoon: true,
-      },
-      {
-        title: "Logistics",
-        url: "/dashboard/coming-soon",
-        icon: Forklift,
-        comingSoon: true,
-      },
+      // {
+      //   title: "Analytics",
+      //   url: "/dashboard/coming-soon",
+      //   icon: Gauge,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "E-commerce",
+      //   url: "/dashboard/coming-soon",
+      //   icon: ShoppingBag,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "Academy",
+      //   url: "/dashboard/coming-soon",
+      //   icon: GraduationCap,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "Logistics",
+      //   url: "/dashboard/coming-soon",
+      //   icon: Forklift,
+      //   comingSoon: true,
+      // },
     ],
   },
   {
@@ -99,41 +100,39 @@ export const sidebarItems: NavGroup[] = [
         icon: Mail,
         comingSoon: true,
       },
-      {
-        title: "Chat",
-        url: "/dashboard/coming-soon",
-        icon: MessageSquare,
-        comingSoon: true,
-      },
-      {
-        title: "Calendar",
-        url: "/dashboard/coming-soon",
-        icon: Calendar,
-        comingSoon: true,
-      },
-      {
-        title: "Kanban",
-        url: "/dashboard/coming-soon",
-        icon: Kanban,
-        comingSoon: true,
-      },
-      {
-        title: "Invoice",
-        url: "/dashboard/coming-soon",
-        icon: ReceiptText,
-        comingSoon: true,
-      },
+      // {
+      //   title: "Chat",
+      //   url: "/dashboard/coming-soon",
+      //   icon: MessageSquare,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "Calendar",
+      //   url: "/dashboard/coming-soon",
+      //   icon: Calendar,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "Kanban",
+      //   url: "/dashboard/coming-soon",
+      //   icon: Kanban,
+      //   comingSoon: true,
+      // },
+      // {
+      //   title: "Invoice",
+      //   url: "/dashboard/coming-soon",
+      //   icon: ReceiptText,
+      //   comingSoon: true,
+      // },
       {
         title: "Users",
-        url: "/dashboard/coming-soon",
+        url: "/dashboard/users",
         icon: Users,
-        comingSoon: true,
       },
       {
         title: "Roles",
-        url: "/dashboard/coming-soon",
-        icon: Lock,
-        comingSoon: true,
+        url: "/dashboard/roles",
+        icon: UserRoundCog,
       },
       {
         title: "Authentication",
@@ -148,16 +147,16 @@ export const sidebarItems: NavGroup[] = [
       },
     ],
   },
-  {
-    id: 3,
-    label: "Misc",
-    items: [
-      {
-        title: "Others",
-        url: "/dashboard/coming-soon",
-        icon: SquareArrowUpRight,
-        comingSoon: true,
-      },
-    ],
-  },
+  // {
+  //   id: 3,
+  //   label: "Misc",
+  //   items: [
+  //     {
+  //       title: "Others",
+  //       url: "/dashboard/coming-soon",
+  //       icon: SquareArrowUpRight,
+  //       comingSoon: true,
+  //     },
+  //   ],
+  // },
 ];
