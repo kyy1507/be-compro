@@ -37,7 +37,7 @@ export function useDataTableInstance<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: defaultPageIndex ?? 0,
-    pageSize: defaultPageSize ?? 10,
+    pageSize: defaultPageSize ?? 20,
   });
 
   const table = useReactTable({
@@ -59,10 +59,11 @@ export function useDataTableInstance<TData, TValue>({
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    manualPagination: true,
+    // getPaginationRowModel: getPaginationRowModel(), //
   });
 
   return table;
