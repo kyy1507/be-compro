@@ -17,6 +17,8 @@ import {
   GraduationCap,
   type LucideIcon,
   UserRoundCog,
+  UserCheck,
+  Puzzle,
 } from "lucide-react";
 
 export interface NavSubItem {
@@ -118,12 +120,6 @@ export const sidebarItems: NavGroup[] = [
       //   icon: Kanban,
       //   comingSoon: true,
       // },
-      // {
-      //   title: "Invoice",
-      //   url: "/dashboard/coming-soon",
-      //   icon: ReceiptText,
-      //   comingSoon: true,
-      // },
       {
         title: "Users",
         url: "/dashboard/users",
@@ -133,6 +129,16 @@ export const sidebarItems: NavGroup[] = [
         title: "Roles",
         url: "/dashboard/roles",
         icon: UserRoundCog,
+      },
+      {
+        title: "Permissions",
+        url: "/dashboard/permissions",
+        icon: UserCheck,
+      },
+      {
+        title: "Module Manager",
+        url: "/dashboard/module-manager",
+        icon: Puzzle,
       },
       {
         title: "Authentication",

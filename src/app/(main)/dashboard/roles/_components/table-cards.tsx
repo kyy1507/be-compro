@@ -79,7 +79,7 @@ export function TableCards() {
             <div className="flex items-center gap-2">
               <Input
                 id="q"
-                placeholder="Cari berdasarkan Nama atau Email"
+                placeholder="Cari berdasarkan Nama"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
